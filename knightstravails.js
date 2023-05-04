@@ -30,7 +30,7 @@ function knightMoves(start, end) {
 		}
 
 		validateMoves(possibleMoves) {
-			return possibleMoves.filter((move) => {
+			return possibleMoves.filter(move => {
 				const X = move[0];
 				const Y = move[1];
 				if (X > 7 || X < 0 || Y > 7 || Y < 0) return false;
@@ -42,7 +42,6 @@ function knightMoves(start, end) {
 			const board = {};
 			board[JSON.stringify(start)] = "";
 			const queue = [this.currentPosition];
-			// queue[0][0] !== end[0] && queue[0][1] !== end[1])
 			while (!(queue[0][0] === end[0] && queue[0][1] === end[1])) {
 				const current = queue.shift();
 				this.previousPosition = this.currentPosition
@@ -53,9 +52,9 @@ function knightMoves(start, end) {
 					board[JSON.stringify(move)] = board[JSON.stringify(current)] + `${JSON.stringify(this.currentPosition)} `;
 				})
 			}
-			const result = (board[JSON.stringify(end)] + JSON.stringify(end)).split(' ');
-			console.log(`=> You made it in ${result.length - 1} moves! Here's your path:`);
-			result.forEach(move => console.log(move));
+			const path = (board[JSON.stringify(end)] + JSON.stringify(end)).split(' ');
+			console.log(`=> You made it in ${path.length - 1} moves! Here's your path:`);
+			path.forEach(move => console.log(move));
 		}
 	}
 
